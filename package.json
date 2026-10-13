@@ -1,0 +1,14 @@
+{
+  "name": "drogon-ai-agent-workflows",
+  "version": "1.0.0",
+  "private": false,
+  "description": "n8n workflow exports and helper scripts for Drogon AI Agent 1.0",
+  "main": "index.js",
+  "scripts": {
+    "validate": "node ./scripts/validate-workflows.js",
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "author": "Daivik Patel",
+  "license": "MIT",
+  "devDependencies": {}
+}
