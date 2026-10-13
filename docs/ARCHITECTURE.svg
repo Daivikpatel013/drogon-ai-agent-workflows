@@ -28,7 +28,7 @@
     </defs>
 
     <rect x="40" y="160" width="320" height="60" rx="8" fill="#0b1220" stroke="#374151" />
-    <text x="200" y="192" text-anchor="middle">Logging & Tracking</text>
+    <text x="200" y="192" text-anchor="middle">Logging &amp; Tracking</text>
     <text x="200" y="208" text-anchor="middle">Google Sheets / Gap tracker</text>
 
     <rect x="400" y="160" width="320" height="60" rx="8" fill="#0b1220" stroke="#374151" />
