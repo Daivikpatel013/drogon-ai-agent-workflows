@@ -1,5 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220">
-  <rect width="100%" height="100%" fill="#0b1220" />
-  <text x="600" y="40" font-family="Segoe UI, Roboto, Arial" font-size="28" fill="#fff" text-anchor="middle">Surprise — Daily Run</text>
-  <text x="600" y="120" font-family="Segoe UI, Roboto, Arial" font-size="16" fill="#cbd5e1" text-anchor="middle">I replaced the screenshot with an Easter egg — let me know if you want a real image instead.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="700" viewBox="0 0 1400 700">
+  <defs>
+    <linearGradient id="bg2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#091620"/>
+      <stop offset="100%" stop-color="#0d1f2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="700" fill="url(#bg2)"/>
+  <rect x="40" y="40" width="1320" height="620" rx="18" fill="#0b1220" stroke="#dfe6f3" stroke-width="2"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#e2e8f0">
+    <text x="700" y="90" text-anchor="middle" font-size="30" font-weight="700">Daily Run Flow</text>
+
+    <rect x="120" y="190" width="260" height="110" rx="16" fill="#111827" stroke="#4b5563"/>
+    <text x="250" y="236" text-anchor="middle" font-size="24" font-weight="700">Get Saved</text>
+    <text x="250" y="266" text-anchor="middle" font-size="15" fill="#b8c2d9">Candidates</text>
+
+    <rect x="470" y="190" width="260" height="110" rx="16" fill="#111827" stroke="#4b5563"/>
+    <text x="600" y="236" text-anchor="middle" font-size="24" font-weight="700">Rotate</text>
+    <text x="600" y="266" text-anchor="middle" font-size="15" fill="#b8c2d9">Search Keyword</text>
+
+    <rect x="820" y="190" width="260" height="110" rx="16" fill="#111827" stroke="#4b5563"/>
+    <text x="950" y="236" text-anchor="middle" font-size="24" font-weight="700">Run Workflow</text>
+    <text x="950" y="266" text-anchor="middle" font-size="15" fill="#b8c2d9">AI application loop</text>
+
+    <path d="M380 245 H470" stroke="#d9e2f0" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+    <path d="M730 245 H820" stroke="#d9e2f0" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+
+    <rect x="430" y="420" width="540" height="150" rx="16" fill="#111827" stroke="#4b5563"/>
+    <text x="700" y="470" text-anchor="middle" font-size="22" font-weight="700">Digest + gap tracking</text>
+    <text x="700" y="505" text-anchor="middle" font-size="16" fill="#b8c2d9">Email summary, score evaluation, and missing skills updates</text>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dfe6f3"/>
+    </marker>
+  </defs>
 </svg>

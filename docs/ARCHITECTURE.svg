@@ -1,27 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620">
   <defs>
-    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#ff7a18" />
-      <stop offset="50%" stop-color="#af002d" />
-      <stop offset="100%" stop-color="#32008c" />
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#07131f"/>
+      <stop offset="100%" stop-color="#0b1f2d"/>
     </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#b8c2d9"/>
+    </marker>
   </defs>
-  <rect width="100%" height="100%" fill="url(#g)" />
-  <g transform="translate(0,20)">
-    <circle cx="200" cy="120" r="80" fill="#ffffff22">
-      <animate attributeName="cy" dur="6s" values="120;60;120;180;120" repeatCount="indefinite" />
-    </circle>
-    <circle cx="540" cy="140" r="110" fill="#ffffff11">
-      <animate attributeName="cy" dur="7s" values="140;80;140;200;140" repeatCount="indefinite" />
-    </circle>
-    <circle cx="880" cy="120" r="90" fill="#ffffff22">
-      <animate attributeName="cy" dur="5.5s" values="120;40;120;180;120" repeatCount="indefinite" />
-    </circle>
-  </g>
-  <text x="600" y="260" font-size="48" text-anchor="middle" fill="#fff" font-family="Segoe UI, Roboto, Arial" font-weight="700">Surprise!</text>
-  <text x="600" y="310" font-size="20" text-anchor="middle" fill="#fff8" font-family="Segoe UI, Roboto, Arial">You just found an Easter egg — thanks for looking 👀</text>
-  <g opacity="0.9">
-    <rect x="380" y="335" rx="6" width="440" height="56" fill="#00000020" />
-    <text x="600" y="372" text-anchor="middle" fill="#fff" font-size="14">If you'd like, I can replace the diagrams with polished images or keep this surprise.</text>
+
+  <rect width="1400" height="620" fill="url(#bg)"/>
+  <rect x="20" y="20" width="1360" height="580" rx="18" fill="none" stroke="#e5e7eb" stroke-width="1.5" opacity="0.9"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#e2e8f0">
+    <rect x="70" y="120" width="210" height="92" rx="12" fill="url(#panel)" stroke="#2f3c52"/>
+    <text x="175" y="155" font-size="22" font-weight="700" text-anchor="middle">Candidate Intake</text>
+    <text x="175" y="180" font-size="15" fill="#b9c4d4" text-anchor="middle">Form / Data table</text>
+
+    <rect x="330" y="120" width="250" height="92" rx="12" fill="url(#panel)" stroke="#2f3c52"/>
+    <text x="455" y="155" font-size="22" font-weight="700" text-anchor="middle">Job Discovery</text>
+    <text x="455" y="180" font-size="15" fill="#b9c4d4" text-anchor="middle">Apify / LinkedIn scraper</text>
+
+    <rect x="630" y="120" width="220" height="92" rx="12" fill="url(#panel)" stroke="#2f3c52"/>
+    <text x="740" y="155" font-size="22" font-weight="700" text-anchor="middle">AI Scoring</text>
+    <text x="740" y="180" font-size="15" fill="#b9c4d4" text-anchor="middle">LangChain / GPT</text>
+
+    <rect x="900" y="120" width="240" height="92" rx="12" fill="url(#panel)" stroke="#2f3c52"/>
+    <text x="1020" y="155" font-size="22" font-weight="700" text-anchor="middle">Application Prep</text>
+    <text x="1020" y="180" font-size="15" fill="#b9c4d4" text-anchor="middle">Resume &amp; Cover Letter</text>
+
+    <line x1="280" y1="166" x2="330" y2="166" stroke="#cbd5e1" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="580" y1="166" x2="630" y2="166" stroke="#cbd5e1" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="850" y1="166" x2="900" y2="166" stroke="#cbd5e1" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <rect x="210" y="290" width="280" height="92" rx="12" fill="#0e1726" stroke="#2f3c52"/>
+    <text x="350" y="325" font-size="21" font-weight="700" text-anchor="middle">Logging &amp; Tracking</text>
+    <text x="350" y="350" font-size="15" fill="#b9c4d4" text-anchor="middle">Google Sheets / Gap tracker</text>
+
+    <rect x="560" y="290" width="300" height="92" rx="12" fill="#0e1726" stroke="#2f3c52"/>
+    <text x="710" y="325" font-size="21" font-weight="700" text-anchor="middle">Delivery</text>
+    <text x="710" y="350" font-size="15" fill="#b9c4d4" text-anchor="middle">Gmail / Manual review digest</text>
+
+    <line x1="740" y1="212" x2="740" y2="290" stroke="#cbd5e1" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="490" y1="336" x2="560" y2="336" stroke="#cbd5e1" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <text x="700" y="450" font-size="16" fill="#93a3ba" text-anchor="middle">Schedules: daily run (8am), weekly summary (Mon 9am)</text>
   </g>
 </svg>
