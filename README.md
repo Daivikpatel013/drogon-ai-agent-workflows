@@ -12,6 +12,28 @@ Drogon AI Agent 1.0 is a set of n8n workflows for AI-assisted job searching and 
 
 This repository contains the actual workflow exports for the system and a clean operational setup guide.
 
+## Project overview
+
+![Architecture overview](docs/ARCHITECTURE.svg)
+
+## Workflow screenshots
+
+### 1. Full workflow canvas
+
+![Full workflow canvas](docs/screenshots/1.svg)
+
+### 2. Daily run flow
+
+![Daily run flow](docs/screenshots/2.svg)
+
+### 3. Weekly summary flow
+
+![Weekly summary flow](docs/screenshots/3.svg)
+
+### 4. Job application form
+
+![Job application form](docs/screenshots/4.svg)
+
 ## Included workflows
 
 1. `workflows/Drogon Ai Agent 1.0.json`
@@ -122,15 +144,28 @@ This project is designed to automate job applications with human review before s
 ```text
 .
 ├── README.md
+├── LICENSE
+├── CHANGELOG.md
+├── CONTRIBUTING.md
 ├── .env.example
 ├── .gitignore
 ├── docs/
+│   ├── ARCHITECTURE.svg
+│   ├── SETUP.md
+│   ├── screenshots/
+│   │   ├── 1.svg
+│   │   ├── 2.svg
+│   │   ├── 3.svg
+│   │   └── 4.svg
 │   └── WORKFLOW_GUIDE.md
+├── scripts/
+│   └── validate-workflows.js
 ├── workflows/
 │   ├── Drogon Ai Agent 1.0.json
 │   ├── Job Agent - Daily Run.json
 │   ├── Drogon Ai Agent 1.0- Weekly Skills Summary.json
 │   └── README.md
+├── package.json
 └── .n8n/
 ```
 
