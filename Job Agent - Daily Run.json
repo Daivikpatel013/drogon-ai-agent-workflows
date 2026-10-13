@@ -1,0 +1,191 @@
+{
+  "name": "Job Agent - Daily Run",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "39e724c9-f05f-4182-b324-8ce465060299",
+      "name": "Every day at 8am",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "XvUwecRiu90PZ1Xn",
+          "cachedResultName": "job_agent_candidates"
+        },
+        "returnAll": true
+      },
+      "id": "6a17357b-aeea-4826-9ab8-686e5cabe02c",
+      "name": "Get Saved Candidates",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);\nreturn $input.all().map(item => {\n  const c = item.json;\n  const t = String(c.job_title || '').trim();\n  const variants = [t, 'Junior ' + t, t + ' Associate', t + ' Assistant', 'Research ' + t, t + ' Technician', t + ' Specialist'];\n  return { json: {\n    candidateName: c.candidate_name,\n    candidateEmail: c.candidate_email,\n    resumeText: c.resume_text,\n    searchKeyword: variants[dayOfYear % variants.length],\n    searchLocation: c.job_location\n  } };\n}).filter(i => i.json.candidateEmail && i.json.resumeText && i.json.searchKeyword.trim());"
+      },
+      "id": "25d73eb3-145e-4aac-9910-ec68e97778ad",
+      "name": "Rotate Search Keyword",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "o7c7Wkk9BoNtTPVL",
+          "cachedResultName": "Job Application AI Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "candidateName": "={{ $json.candidateName }}",
+            "candidateEmail": "={{ $json.candidateEmail }}",
+            "resumeText": "={{ $json.resumeText }}",
+            "searchKeyword": "={{ $json.searchKeyword }}",
+            "searchLocation": "={{ $json.searchLocation }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "candidateName",
+              "displayName": "candidateName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "candidateEmail",
+              "displayName": "candidateEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "resumeText",
+              "displayName": "resumeText",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "searchKeyword",
+              "displayName": "searchKeyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "searchLocation",
+              "displayName": "searchLocation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "b179edbd-2268-43e5-a6aa-4436e0e13fd9",
+      "name": "Run Job Agent",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.4,
+      "position": [
+        672,
+        0
+      ],
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Every day at 8am": {
+      "main": [
+        [
+          {
+            "node": "Get Saved Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Saved Candidates": {
+      "main": [
+        [
+          {
+            "node": "Rotate Search Keyword",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Rotate Search Keyword": {
+      "main": [
+        [
+          {
+            "node": "Run Job Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "cf657719-98f0-4e24-9086-b14d68061607",
+  "meta": {
+    "instanceId": "68b6012de2dd286d682181eba8d517c0fdc76f054f5365cf994d70a6edd4ccc8"
+  },
+  "nodeGroups": [],
+  "id": "RsBNRZA5ayOL8mWc",
+  "tags": []
+}

@@ -1,0 +1,152 @@
+{
+  "name": "Drogon Ai Agent 1.0- Weekly Skills Summary",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "e4bab226-fcf3-4def-8a26-0ab43b4861a5",
+      "name": "Every Monday 9am",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "17g1vA2_-dC7SWhd79EaU6ISQHvKlNO8N2dEHcBieymM",
+          "cachedResultName": "Resume Gap Tracker v2"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1681664743",
+          "cachedResultName": "Gaps"
+        },
+        "options": {}
+      },
+      "id": "d92b2552-edae-49ae-bb99-d91e3bbf71bb",
+      "name": "Read Resume Gaps",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZUDHWTAQ6oP0TXkg",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const NL = String.fromCharCode(10);\nconst cutoff = Date.now() - 7 * 86400000;\nconst byEmail = {};\nfor (const item of $input.all()) {\n  const r = item.json;\n  const email = String(r['Candidate Email'] || '').trim();\n  if (!email || !email.includes('@')) continue;\n  const d = new Date(r['Date']).getTime();\n  if (!isNaN(d) && d < cutoff) continue;\n  const skills = String(r['Missing Skills'] || '').split(',').map(s => s.trim()).filter(Boolean);\n  byEmail[email] = byEmail[email] || { jobs: 0, counts: {} };\n  byEmail[email].jobs++;\n  for (const s of skills) {\n    const k = s.toLowerCase();\n    byEmail[email].counts[k] = (byEmail[email].counts[k] || 0) + 1;\n  }\n}\nreturn Object.entries(byEmail).map(([email, v]) => {\n  const top = Object.entries(v.counts).sort((a, b) => b[1] - a[1]).slice(0, 8);\n  if (!top.length) return null;\n  const lines = top.map(([s, n], i) => (i + 1) + '. ' + s + ' (missing in ' + n + ' of ' + v.jobs + ' jobs)').join(NL);\n  return { json: { email, subject: 'Your weekly skills gap summary', body: 'Hi,' + NL + NL + 'Across ' + v.jobs + ' jobs that did not quite fit you this week, these skills came up most often:' + NL + NL + lines + NL + NL + 'Learning or adding the top ones to your CV (if you already have them) will unlock more matches.' + NL + NL + 'Your Job Application Agent' } };\n}).filter(Boolean);"
+      },
+      "id": "bdf8295a-f61c-4a36-b36d-3617942a9ffa",
+      "name": "Top Missing Skills Per Candidate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.body }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "e493f5ad-6137-4438-9e16-1d9d38ac49c6",
+      "name": "Email Skills Summary",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        0
+      ],
+      "webhookId": "ab20f0e2-fd57-49cb-aaa4-f5f755f15063",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "j89RA9XtcbmCkqvH",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Every Monday 9am": {
+      "main": [
+        [
+          {
+            "node": "Read Resume Gaps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Resume Gaps": {
+      "main": [
+        [
+          {
+            "node": "Top Missing Skills Per Candidate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Top Missing Skills Per Candidate": {
+      "main": [
+        [
+          {
+            "node": "Email Skills Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "fe7757ad-3ac5-4628-8bc8-baaa02acd2e9",
+  "meta": {
+    "instanceId": "68b6012de2dd286d682181eba8d517c0fdc76f054f5365cf994d70a6edd4ccc8"
+  },
+  "nodeGroups": [],
+  "id": "LnAxGjN3Vb1kTzhK",
+  "tags": []
+}
