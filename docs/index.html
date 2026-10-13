@@ -53,6 +53,13 @@
     .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent-2),var(--accent-1));color:#2a0e0b;font-weight:800;text-decoration:none;border:1px solid rgba(255,255,255,0.18);box-shadow:0 10px 25px rgba(255,107,53,0.3)}
     .btn:hover{filter:brightness(1.05)}
 
+    /* Banner */
+    .banner{height:140px;border-radius:12px;overflow:hidden;margin-top:18px;box-shadow:0 18px 40px rgba(15,6,5,0.6);border:1px solid rgba(248,199,90,0.14);background:linear-gradient(90deg, rgba(255,107,53,0.06), rgba(248,199,90,0.03));display:flex;align-items:center;justify-content:center}
+    .dragon-img{width:100%;height:100%;object-fit:cover;display:block;}
+    .dragon-svg{width:100%;height:100%;display:block}
+    .dragon-wave{fill:url(#g1);transform-origin:center;animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
     .canvas{margin-top:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:34px;border-radius:var(--radius);box-shadow:var(--shadow-soft);position:relative;border:1px solid var(--border)}
     .canvas::before{content:"";position:absolute;inset:10px;border-radius:12px;border:1px solid rgba(248,199,90,0.06);pointer-events:none}
 
@@ -95,12 +102,14 @@
     @media (max-width:920px){
       .layout{grid-template-columns:repeat(2,1fr)}
       .lower{grid-template-columns:1fr}
+      .banner{height:110px}
     }
     @media (max-width:520px){
       .layout{grid-template-columns:1fr}
       header{gap:12px}
       .logo{width:64px;height:64px}
       .sheet{width:92%}
+      .banner{height:90px}
     }
   </style>
 </head>
@@ -117,6 +126,29 @@
         <a class="btn" href="../workflows/Drogon%20Ai%20Agent%201.0.json" title="Open main workflow">Open main workflow</a>
       </div>
     </header>
+
+    <!-- Dragon banner: place a GIF at ../assets/dragon.gif if you want a custom banner. The <img> falls back to the inline SVG if the GIF is missing. -->
+    <div class="banner" role="img" aria-label="Dragon banner">
+      <img class="dragon-img" src="../assets/dragon.gif" alt="Dragon banner" onerror="this.style.display='none';document.getElementById('dragonSVG').style.display='block'">
+
+      <svg id="dragonSVG" class="dragon-svg" viewBox="0 0 800 140" preserveAspectRatio="xMidYMid meet" style="display:none" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="0%">
+            <stop offset="0%" stop-color="#ff6b35" />
+            <stop offset="50%" stop-color="#f8c75a" />
+            <stop offset="100%" stop-color="#dc2626" />
+          </linearGradient>
+        </defs>
+        <!-- Stylized dragon silhouette + flame wave (simple, scalable) -->
+        <g transform="translate(0,10) scale(1.0)">
+          <path class="dragon-wave" d="M20 80 C120 10, 220 10, 320 80 C420 150, 520 150, 620 80 C700 20, 760 40, 800 70 L800 140 L0 140 Z" fill="url(#g1)" opacity="0.95"></path>
+          <g transform="translate(48,8) scale(0.9)" opacity="0.98">
+            <path d="M120 30 C100 18, 70 8, 36 10 C20 11, 8 22, 6 40 C4 58, 18 74, 42 82 C66 90, 96 88, 128 78 C140 74, 150 64, 152 54 C154 40,140 34,120 30 Z" fill="#1b0b0a"></path>
+            <path d="M118 26 C106 20, 86 18, 60 20 C46 21, 34 30, 32 42 C30 56, 42 68, 60 72 C78 76,100 74,124 66 C134 62,142 54,140 44 C138 32,130 28,118 26 Z" fill="#ff8a50" opacity="0.95"/>
+          </g>
+        </g>
+      </svg>
+    </div>
 
     <main class="canvas" role="main">
       <div style="display:flex;flex-direction:column;gap:18px">
