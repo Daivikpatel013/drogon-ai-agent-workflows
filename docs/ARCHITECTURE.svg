@@ -15,7 +15,7 @@
 
     <rect x="920" y="40" width="240" height="80" rx="8" fill="#111827" stroke="#374151" />
     <text x="1040" y="70" text-anchor="middle" fill="#fff" font-weight="700">Application Prep</text>
-    <text x="1040" y="92" text-anchor="middle">Resume & Cover Letter</text>
+    <text x="1040" y="92" text-anchor="middle">Resume &amp; Cover Letter</text>
 
     <line x1="260" y1="80" x2="320" y2="80" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)" />
     <line x1="580" y1="80" x2="640" y2="80" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)" />
