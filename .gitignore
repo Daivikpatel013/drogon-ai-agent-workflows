@@ -1,0 +1,29 @@
+# .gitignore
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# n8n local runtime and generated data
+.n8n/
+**/.n8n/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node / TypeScript artifacts
+node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# Editor settings
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp

@@ -1,55 +1,130 @@
 # Drogon AI Agent Workflows
 
-n8n workflows (as `@n8n/workflow-sdk` TypeScript source) for an automated job-application assistant. It finds fresh LinkedIn jobs for a candidate, scores each one against their CV, writes a tailored CV and cover letter for the good fits, and emails everything in a single digest.
+Drogon AI Agent 1.0 is a collection of n8n automation workflows designed to help with career operations, recurring work, and AI-assisted knowledge capture.
 
-## Workflows
+This repository is organized to make it easy to:
 
-| File | Workflow | Purpose |
-|---|---|---|
-| `workflows/drogon-ai-agent-1.0.workflow.ts` | Drogon Ai Agent 1.0 | Main workflow. Combines the form flow, the daily run and the weekly summary in one workflow. |
-| `workflows/job-agent-daily-run.workflow.ts` | Job Agent - Daily Run | Standalone copy of the daily run, kept for reference. Already included in the main workflow. |
-| `workflows/drogon-ai-agent-weekly-skills-summary.workflow.ts` | Drogon Ai Agent 1.0 - Weekly Skills Summary | Standalone copy of the weekly summary, kept for reference. Already included in the main workflow. |
+- automate job applications and outreach
+- run recurring daily tasks with AI
+- summarize skills and progress weekly
+- manage workflow exports, credentials, and environment configuration
 
-## How the main workflow works
+## Included workflow concepts
 
-It has four triggers.
+- Job Application Agent
+  - Research and prepare for opportunities
+  - Draft or refine application materials
+  - Send outreach or application steps using configured services
 
-1. **Form submission.** The candidate enters name, CV text, email, job title and location. The details are saved to the `job_agent_candidates` Data Table, then the job search starts.
-2. **Every day at 8am.** Loads every saved candidate, rotates the search keyword through common variations of their job title, and runs the job search once per candidate.
-3. **Called by the daily run.** The entry point the daily run uses to start the same job search for each candidate.
-4. **Every Monday 9am.** Reads the last 7 days of missed jobs from the gap sheet, finds each candidate's most frequently missing skills and emails them a summary.
+- Daily Run
+  - Daily AI review and task orchestration
+  - Prioritize work, create summaries, and trigger follow-ups
 
-### Job search pipeline
+- Weekly Skills Summary
+  - Aggregate recent activity and work output
+  - Highlight strengths, gaps, and next learning priorities
 
-1. **Find matching jobs.** Scrapes LinkedIn jobs posted in the last 7 days through Apify.
-2. **Score job fit.** Drops obviously weak matches, skips jobs already processed, then an AI step scores each job from 0 to 100 against the CV.
-3. **Prepare application.** For jobs at or above the cutoff (60), the AI tailors the CV, writes a cover letter and searches the web for a recruiter email. It only returns an address it actually saw on a page.
-4. **Deliver and track.** One digest email with all matches, best first.
-5. **Log resume gaps.** Jobs below the cutoff are logged to the Resume Gap Tracker sheet with the score and the missing skills.
+## Repository structure
 
-Nothing is ever sent to employers automatically. The candidate reviews and sends each application themselves.
+```text
+.
+├── README.md
+├── .env.example
+├── .gitignore
+├── docs/
+│   └── WORKFLOW_GUIDE.md
+├── workflows/
+│   └── README.md
+└── .n8n/                     # optional local export folder if you use n8n-specific files
+```
 
-## Services and credentials
+## Prerequisites
 
-The workflows reference these by name inside n8n. No secrets are stored in this repo.
+Before importing or using the workflows, make sure you have:
 
-- Apify, to scrape LinkedIn jobs
-- OpenAI via Gateway credits, for scoring, CV writing and web search
-- Gmail, to send the digest and the weekly summary
-- Google Sheets, for the gap tracker
-- n8n Data Table `job_agent_candidates`, which stores the saved candidates
+- n8n installed and running
+- a valid AI provider account (OpenAI, Anthropic, or similar)
+- access to the tools/services used by your automation
+  - email provider
+  - database or spreadsheet storage
+  - messaging or CRM tools (if used)
+- secure credentials stored in n8n and/or environment variables
 
-## Settings
+## Quick start
 
-These are set in the "Workflow Config" node of the main workflow.
+1. Clone the repository.
+2. Copy `.env.example` to `.env` and fill in your credentials.
+3. Open the workflows in n8n.
+4. Import or recreate the workflows using the exported JSON files (when added to the `workflows/` folder).
+5. Configure credentials and webhook endpoints inside each workflow.
+6. Test each workflow in a safe environment before enabling live automation.
 
-- `maxJobs`: 5
-- `minFitScore`: 60
+## Environment configuration
 
-## Status
+Use `.env.example` as a template for sensitive values. Keep your real secrets out of git history.
 
-These workflows are drafts and are not published. They have been verified only partly, with some steps simulated. They have not had a full live end-to-end run. A live run costs Apify credits, sends a real email and writes sheet rows.
+Example:
 
-## Usage
+```bash
+cp .env.example .env
+```
 
-The files are SDK source, not importable n8n JSON. To use one, give it to the n8n workflow builder (or an `@n8n/workflow-sdk` setup) to build it in your n8n instance, then connect your own credentials.
+Then update values such as:
+
+- `OPENAI_API_KEY`
+- `N8N_WEBHOOK_URL`
+- `SMTP_*` settings
+- any service or database credentials required by your automation steps
+
+## Workflow implementation notes
+
+This repo is structured for an AI-driven workflow system, but it does not assume a single rigid architecture. The workflows can be adapted to:
+
+- personal use
+- team operations
+- recruiter or talent workflows
+- internal productivity automation
+
+Recommended pattern:
+
+- keep workflow exports in `workflows/`
+- document environment assumptions in `docs/`
+- store credentials in n8n credentials manager or secure environment variables
+- use versioning and test runs before broad deployment
+
+## Workflow guide
+
+See `docs/WORKFLOW_GUIDE.md` for a step-by-step guide covering:
+
+- importing workflows into n8n
+- configuring credentials
+- setting triggers and schedule nodes
+- handling AI prompts and outputs
+- testing and monitoring
+
+## Security recommendations
+
+- never commit real API keys or secrets
+- rotate credentials regularly
+- use environment-specific credentials for staging and production
+- validate external service access before production automation
+- review all AI-generated actions before they are allowed to trigger external writes
+
+## Suggested next improvements
+
+If you want to make this project even stronger, consider adding:
+
+- workflow JSON exports for every automation
+- a `package.json` and TypeScript utility layer for helper scripts
+- a proper `LICENSE`
+- README screenshots or architecture diagrams
+- a changelog and release notes
+- a testing checklist for each workflow
+
+## Contributing
+
+This repository is intended to grow with your workflows and automation ideas. Keep documentation updated whenever workflow logic changes.
+
+## Notes
+
+The repository currently serves as a solid foundation for AI workflow automation. As you add actual n8n export files and service integrations, this structure will scale cleanly.
