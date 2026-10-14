@@ -4,93 +4,160 @@
 
 <h1 align="center">Drogon AI Agent 1.0</h1>
 
-<p align="center"><strong style="color:#7df9ff">AI-first job search & application automation — cinematic, repeatable, measurable.</strong></p>
-
 <p align="center">
-  <a href="docs/index.html"><img src="https://img.shields.io/badge/Docs-Interactive-%2300b894?style=for-the-badge" alt="Docs"/></a>
-  <a href="workflows/Drogon%20Ai%20Agent%201.0.json"><img src="https://img.shields.io/badge/Import-n8n%20JSON-%23ff6b6b?style=for-the-badge" alt="Import n8n"/></a>
-  <a href="#why-this-workflow-stands-out"><img src="https://img.shields.io/badge/Why-It%20Matters-%238a5cff?style=for-the-badge" alt="Why"/></a>
-  <a href="#get-started"><img src="https://img.shields.io/badge/Get%20Started-Setup%20Guide-%2399ffcc?style=for-the-badge" alt="Get Started"/></a>
+  <strong>AI-powered job search automation and application tracking system</strong>
 </p>
 
 <p align="center">
-  <a href="docs/index.html"><img src="https://img.shields.io/badge/Start%20the%20Interactive%20Demo-Launch-%23f72585?style=flat-square&logo=chromium" alt="Launch demo"/></a>
-  &nbsp;
-  <a href="workflows/Drogon%20Ai%20Agent%201.0.json"><img src="https://img.shields.io/badge/Try%20the%20Workflow-Import%20JSON-%2312b886?style=flat-square&logo=n8n" alt="Try workflow"/></a>
-  &nbsp;
-  <a href="https://github.com/sponsors/Daivikpatel013"><img src="https://img.shields.io/badge/Sponsor-Support%20Development-%23ffb86b?style=flat-square" alt="Sponsor"/></a>
+  <img src="https://img.shields.io/badge/n8n-Workflow%20Automation-orange?style=for-the-badge&logo=n8n" alt="n8n workflow automation" />
+  <img src="https://img.shields.io/badge/AI-Job%20Matching-blue?style=for-the-badge" alt="AI job matching" />
+  <img src="https://img.shields.io/badge/Google-Sheets%20Tracking-9A5BDF?style=for-the-badge" alt="Google Sheets tracking" />
+  <img src="https://img.shields.io/badge/Apify-LinkedIn%20Scraping-00C2FF?style=for-the-badge" alt="Apify LinkedIn scraping" />
 </p>
 
+> A smart end-to-end workflow for discovering opportunities, prioritizing matches, tailoring applications, and tracking progress automatically.
+
+## Overview
+
+Drogon AI Agent 1.0 is an AI-assisted workflow suite built in n8n to automate the job search lifecycle. It helps candidates move from raw opportunity discovery to personalized application execution without losing track of the pipeline.
+
+This project combines:
+
+- job discovery from LinkedIn via Apify
+- AI-powered scoring and role prioritization
+- resume and cover letter tailoring
+- recruiter contact discovery
+- structured tracking in Google Sheets
+- weekly skill-gap analysis for improvement
+
+The result is a practical workflow that reduces repetitive manual work while making applications more targeted and measurable.
+
+## Why this project matters
+
+Job searching is often fragmented across multiple platforms and manual steps. This project addresses that by creating a streamlined system that:
+
+- reduces time spent on low-quality applications
+- improves fit by scoring jobs against candidate profile
+- personalizes outreach and documents for each role
+- centralizes progress tracking and analytics
+- creates a repeatable process for continuous improvement
+
+## Demo & Docs
+
+- Interactive overview: [docs/index.html](docs/index.html)
+- Workflow docs: [workflows/README.md](workflows/README.md)
+- Main workflow JSON: [workflows/Drogon Ai Agent 1.0.json](workflows/Drogon%20Ai%20Agent%201.0.json)
+
+## Key Features
+
+- Candidate intake and profile capture
+- LinkedIn job discovery using Apify
+- AI-based role filtering and scoring
+- Resume tailoring for each job description
+- Cover letter generation
+- Recruiter contact lookup
+- Google Sheets pipeline tracking
+- Weekly skills summary and gap analysis
+
+## Architecture
+
+The workflow follows a simple but effective pipeline:
+
+1. Candidate profile is collected
+2. LinkedIn job listings are scraped
+3. AI ranks and filters opportunities
+4. Tailored application materials are generated
+5. Outreach and contacts are identified
+6. Progress is tracked in Google Sheets
+7. Weekly insights improve future search strategy
+
+### Diagram
+
+- `docs/ARCHITECTURE.svg`
+- `docs/screenshots/`
+
+## Tech Stack
+
+- n8n for orchestration
+- JavaScript / TypeScript for supporting automation logic
+- OpenAI / Gateway model access for AI analysis
+- Apify for LinkedIn job scraping
+- Google Sheets for pipeline tracking
+- Gmail / email automation for communication
+
+## Project Structure
+
+```text
+.
+├── docs/
+│   ├── ARCHITECTURE.svg
+│   ├── index.html
+│   ├── screenshots/
+│   └── drogog.jpg
+├── workflows/
+│   ├── Drogon Ai Agent 1.0.json
+│   ├── Job Agent - Daily Run.json
+│   ├── Drogon Ai Agent 1.0- Weekly Skills Summary.json
+│   └── README.md
+├── README.md
+├── package.json
+├── scripts/
+└── validation/
+```
+
+## Getting Started
+
+### Prerequisites
+
+- n8n instance
+- Apify account for LinkedIn scraping
+- Google Sheets access
+- Gmail OAuth / email access
+- OpenAI or compatible model API access
+
+### Setup
+
+1. Open the workflow files in `workflows/`.
+2. Import `Drogon Ai Agent 1.0.json` into n8n.
+3. Reconnect required credentials.
+4. Configure Google Sheet IDs and tracking data tables.
+5. Validate the candidate profile and job fields.
+6. Run a test workflow on a small set of jobs.
+
+## Validation
+
+Run the project validator:
+
+```bash
+npm run validate
+```
+
+## Resume-Friendly Summary
+
+This project demonstrates:
+
+- workflow automation and process design
+- AI-driven decision support
+- integration of external APIs and data sources
+- structured data management with Google Sheets
+- end-to-end product thinking from data intake to output
+
+## Future Improvements
+
+- add a dashboard for analytics and conversion metrics
+- improve resume matching using richer scoring models
+- add support for more job sources beyond LinkedIn
+- integrate CRM-style candidate status tracking
+- add a modern frontend or dashboard for reporting
+
+## Contributing
+
+This project is designed to be expanded with improved workflows, better analytics, and more automation layers. If you want to contribute, start by reviewing the docs and workflow structure, then extend the current pipelines with additional integrations or scoring logic.
+
+## License
+
+This project is intended for personal and portfolio use. Please review repository-specific licensing before commercial deployment.
+
 ---
 
-## Elevator pitch
-
-Drogon AI Agent 1.0 automates the boring parts of job hunting: discovery, qualification, personalization, and tracking — so you can apply faster and smarter. Built as a suite of n8n workflows that connect scraping, AI scoring, document tailoring and Google Sheets tracking into a single repeatable pipeline.
-
-## What it does
-
-- Structured candidate intake and preferences capture
-- LinkedIn opportunity discovery via Apify
-- AI-driven scoring and prioritization of roles
-- Automated resume & cover letter tailoring per role
-- Recruiter contact discovery and messaging suggestions
-- Comprehensive Google Sheets tracking for pipelines and metrics
-- Weekly skills-gap report to close critical gaps over time
-
----
-
-## Why this workflow stands out
-
-- Designed for scale: batched discovery + AI filtering reduces noise
-- Higher responder rates: role-specific resumes + outreach improves fit
-- Single-source tracking: all applications, statuses, and outcomes in Sheets
-- Continuous improvement: weekly summaries highlight high-impact skills to develop
-
----
-
-## Architecture (visual)
-
-- Diagram: `docs/ARCHITECTURE.svg`
-- Interactive demo: `docs/index.html`
-
-Quick architecture summary:
-
-1. Intake form -> candidate profile
-2. Apify LinkedIn job scraper -> raw job hits
-3. Scoring service (AI) -> prioritized job list
-4. Tailor resumes & letters -> generate attachments
-5. Outreach & recruiter contact lookup -> send or queue messages
-6. Google Sheets -> tracking, analytics & weekly reports
-
----
-
-## Get started
-
-1. Open `workflows/` and import `Drogon Ai Agent 1.0.json` into your n8n instance.
-2. Reconnect credentials (Gmail, Google Sheets, Apify, OpenAI/Gateway).
-3. Validate Google Sheet IDs and n8n data table name `job_agent_candidates`.
-4. Run a dry test with a small candidate set and review generated artifacts.
-
----
-
-## Visual style note & 4K banner
-
-I rendered the banner at a 4K display width in the README (width="3840"). This forces a cinematic, high-res presentation on supported screens but it does not increase the underlying image's pixel count. For an actual 4K banner (3840×2160), replace `docs/dragog.jpg` with a true 4K-exported image and I'll swap it in.
-
----
-
-## Project structure
-
-- `docs/` — interactive overview, diagrams, screenshots, and branding assets
-- `workflows/` — exported n8n workflow JSON files
-- `README.md` — project overview and quick start
-
----
-
-## Get involved
-
-If you'd like a darker neon aesthetic applied to the image itself (neon overlays, glow, and high-contrast text), or a alternate minimal hero — drop the 4K source and I’ll produce two variants (Cinematic Neon, Minimal Dark) and update the README with a toggle preview.
-
----
-
-_Updated to a startup-style landing layout with cinematic hero and CTAs — let me know which image variant you want next (Cinematic Neon / Minimal Dark) or upload the 4K source to replace the banner._
+Built to demonstrate practical AI workflow design, automation engineering, and end-to-end product thinking for real-world job-search tooling.
