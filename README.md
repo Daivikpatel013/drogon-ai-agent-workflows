@@ -15,21 +15,19 @@
   <img src="https://img.shields.io/badge/Sheets-Tracking-9A5BDF?style=for-the-badge" alt="sheets tracking" />
 </p>
 
-> Interactive demos, polished visuals, and docs to make the project easy to explore.
+> Built for candidates who want a smarter, faster, and more organized job application engine.
 
-Visit the interactive overview: [Docs site](docs/index.html)
+Drogon AI Agent 1.0 is a collection of n8n workflows designed to automate the entire job search lifecycle—from finding opportunities to tailoring documents and tracking progress.
 
-Drogon AI Agent 1.0 is a set of n8n workflows for AI-assisted job searching and application management. It combines:
+## What it does
 
-- candidate intake from a form
-- LinkedIn job discovery via Apify
-- AI scoring and filtering
-- resume tailoring and cover letter generation
-- recruiter contact lookup
-- Google Sheets tracking
-- weekly skills-gap summaries
-
----
+- Collects candidate details and job preferences from a structured intake flow
+- Finds relevant LinkedIn opportunities using Apify-powered scraping
+- Uses AI to score and prioritize the best-fit roles
+- Tailors resumes and cover letters to each job description
+- Identifies recruiter contacts and outreach opportunities
+- Tracks engagement and application progress in Google Sheets
+- Sends a weekly skills-gap summary to improve future applications
 
 ## Quick links
 
@@ -41,17 +39,17 @@ Drogon AI Agent 1.0 is a set of n8n workflows for AI-assisted job searching and 
 
 ## Why this workflow stands out
 
-- Automates the messy middle of job hunting
-- Surfaces the best-fit roles using AI scoring
-- Personalizes outreach with tailored resume and cover letter updates
-- Keeps everything trackable in Google Sheets
-- Builds a weekly skills summary to improve your next search cycle
+- Automates the most time-consuming parts of the job search
+- Improves role matching with AI-driven scoring and filtering
+- Personalizes outreach with better-fit application materials
+- Keeps all activity visible in a single tracking sheet
+- Builds a repeatable weekly improvement loop for your job-search strategy
 
 ---
 
 ## Screenshots & diagrams
 
-See `docs/ARCHITECTURE.svg` and `docs/screenshots/` for the updated visuals and placeholders.
+See `docs/ARCHITECTURE.svg` and `docs/screenshots/` for the updated visuals and architecture references.
 
 ---
 
@@ -62,4 +60,12 @@ See `docs/ARCHITECTURE.svg` and `docs/screenshots/` for the updated visuals and 
 
 ---
 
-For contributors: the `docs/` folder contains the interactive overview used for GitHub Pages. If you want a different theme or custom graphics (neon, minimal, animated Lottie), tell me and I will help tune it further.
+## Project structure
+
+- `docs/` — interactive overview, diagrams, screenshots, and branding assets
+- `workflows/` — exported n8n workflow JSON files
+- `README.md` — project overview and quick start guide
+
+---
+
+For contributors: the `docs/` folder contains the interactive overview used for GitHub Pages. If you want a different visual direction—neon, minimal, cinematic, or animated—I can help refine the branding further.
